@@ -3,7 +3,7 @@ package com.gmail.yuramitryahin.util;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Util {
+public class ListSupplier {
     private static final int LENGTH = 1000000;
 
     public static List<Integer> generateRandomList() {
