@@ -26,16 +26,14 @@ public class ExecutorServiceImpl {
         List<List<Integer>> partition = ListUtils.partition(numbers,
                 numberOfPartition == 0 ? 1 : numberOfPartition);
         for (List<Integer> list : partition) {
-            callableTasks.add(new CallableThread(list));
+            callableTasks.add(new SumCalculatingThread(list));
         }
         BigInteger sum = BigInteger.valueOf(0);
         try {
             List<Future<Integer>> futures = executor.invokeAll(callableTasks);
             executor.shutdown();
             for (int i = 0; i < futures.size(); i++) {
-                if (futures.get(i).isDone()) {
-                    sum = sum.add(BigInteger.valueOf(futures.get(i).get()));
-                }
+                sum = sum.add(BigInteger.valueOf(futures.get(i).get()));
             }
         } catch (InterruptedException | ExecutionException e) {
             new RuntimeException("Can't calculate sum at ExecutorService!", e);

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListSupplier {
-    private static final int LENGTH = 1000000;
+    private static final int LENGTH = 1000_000;
 
     public static List<Integer> generateRandomList() {
         List<Integer> list = new ArrayList<>();
